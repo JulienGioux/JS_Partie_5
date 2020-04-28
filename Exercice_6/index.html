@@ -97,11 +97,10 @@
         var formProfil = document.getElementById(`formProfil`);
         var inputTxt = formProfil.getElementsByTagName(`input`);
         formProfil.addEventListener(`keyup`, testForm);
-        console.log(formProfil);
         
         for (var i = 0; i < inputTxt.length; i++) { 
-            inputTxt[i].addEventListener(`focusin`, changeBorderFocus);
-            inputTxt[i].addEventListener(`focusout`, changeBorderFocus);
+            inputTxt[i].addEventListener(`focus`, changeBorderFocus);
+            inputTxt[i].addEventListener(`blur`, changeBorderFocus);
         }
 
         function changeBorderFocus() {
