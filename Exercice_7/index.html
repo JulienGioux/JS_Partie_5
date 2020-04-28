@@ -65,11 +65,11 @@
 </body>
 <script>
   let body = document.getElementsByTagName(`body`)[0];
-  body.addEventListener(`wheel`, test, true);
+  body.addEventListener(`wheel`, zoomTxt, true);
   const ratioFontSize = 0.1;
   body.style.fontSize = `1rem`;
 
-  function test(event){
+  function zoomTxt(event){
     let y = event.deltaY;    
     let fSizeNum = Number(this.style.fontSize.replace(`rem`, ``));
     if (y > 0) {
