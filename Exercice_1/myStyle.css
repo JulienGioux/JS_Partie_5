@@ -1,0 +1,16 @@
+.borderRed {
+    border-color: red;
+}
+.borderGreen {
+    border-color: green;
+}
+.textGreen {
+    color: green;
+}
+.textRed {
+    color: red;
+}
+.max-W-320 {
+    min-width: min-content;
+    max-width: 320px;
+}

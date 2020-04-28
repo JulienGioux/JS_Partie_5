@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="myStyle.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Exercice 1</title>
+</head>
+
+<body>
+    <h1>Exercice 1</h1>
+    <p>Créer un formulaire demandant un mot de passe et une confirmation de mot de passe et comportant un bouton.
+        Au clic sur le bouton, si les deux champs sont identiques, les entourer de vert. Sinon les entourer en rouge.</p>
+    <form class="p-2 max-W-320 m-auto" action="">
+        <fieldset class="bg-info">
+            <legend class="p-1 h4 text-white bg-info">Créez votre mot de passe :</legend>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <label for="firstPwd">Votre mot de passe :</label>
+                    <div>
+                        <input type="password" id="firstPwd" name="firstPwd" class="borderRed" onKeyUp="comparePwd()">
+                        <span id="iconOk1" class="material-icons textRed">
+                            announcement
+                        </span>
+                    </div>
+
+                </li>
+                <li class="list-group-item">
+                    <label for="secondPwd">Confirmer votre mot de passe :</label>
+                    <div></div>
+                    <input type="password" id="secondPwd" name="secondPwd" class="borderRed" onKeyUp="comparePwd()">
+                    <span id="iconOk2" class="material-icons textRed">
+                        announcement
+                    </span>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <input id="validateForm" onclick="submitPwd()" disabled=true type="button" value="Valider"></input>
+                    <p id="msgError" class="textRed"></p>
+                </li>
+                <li class="list-group-item bg-info text-white font-italic">
+                    <p>*Votre mot de passe doit comporter :</p>
+                    <ul>
+                        <li>8 à 50 caractères</li>
+                        <li>au moins une lettre minuscule</li>
+                        <li>au moins une lettre majuscule</li>
+                        <li>au moins un chiffre</li>
+                        <li>au moins un caractère spécial</li>
+                    </ul>
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script>
+        let firstPwd;
+        let secondPwd;
+        let iconOk1;
+        let iconOk2;
+        let patt;
+        let patt2;
+        let Pwd1;
+        let Pwd2;
+        let validateform = document.getElementById(`validateForm`);
+
+        function comparePwd() {
+            firstPwd = document.getElementById(`firstPwd`);
+            secondPwd = document.getElementById(`secondPwd`);
+            iconOk1 = document.getElementById(`iconOk1`);
+            iconOk2 = document.getElementById(`iconOk2`);
+            console.log(firstPwd.value);
+            console.log(secondPwd.value);
+            patt = /^(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\!\@\#\$\%\^\&\*\(\)\-\=\¡\£\_\+\`\~\.\,<\>\/\?\;\:\'\"\\\|\[\]\{\}]).{8,256}$/g;
+            patt2 = /^(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\!\@\#\$\%\^\&\*\(\)\-\=\¡\£\_\+\`\~\.\,<\>\/\?\;\:\'\"\\\|\[\]\{\}]).{8,256}$/g;
+            if (patt.test(firstPwd.value)) {
+                console.log(`test ok1`);
+                iconOk1.style.color = `green`;
+                iconOk1.innerHTML = `done`;
+                Pwd1 = true;
+            } else {
+                iconOk1.style.color = `red`;
+                iconOk1.innerHTML = `announcement`;
+                Pwd1 = false;
+            }
+
+            if (patt2.test(secondPwd.value)) {
+                console.log(`test ok2`);
+                iconOk2.style.color = `green`;
+                iconOk2.innerHTML = `done`;
+
+                Pwd2 = true;
+            } else {
+                iconOk2.style.color = `red`;
+                iconOk2.innerHTML = `announcement`;
+                Pwd2 = false;
+            }
+
+            if (firstPwd.value != secondPwd.value) {
+                document.getElementById(`msgError`).innerHTML = `Les mots de passes ne sont pas identiques`;
+            } else {
+                document.getElementById(`msgError`).innerHTML = ``;
+            }
+
+            if (Pwd1 && Pwd2 && firstPwd.value === secondPwd.value) {
+                validateform.disabled = false;
+            } else {
+                validateform.disabled = true;
+            }
+        }
+
+        function submitPwd() {
+            if (firstPwd.value === secondPwd.value) {
+                firstPwd.className = `borderGreen`;
+                secondPwd.className = `borderGreen`;
+            } else {
+                firstPwd.className = `borderRed`;
+                secondPwd.className = `borderRed`;
+            }
+        }
+    </script>
+</body>
+
+</html>
