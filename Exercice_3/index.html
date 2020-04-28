@@ -104,7 +104,7 @@
         
         function compareName() {
 
-            pattName = /([a-zA-Z][^\d]-*)\b/g;
+            pattName = /([a-zA-Z][^\d]-*)\b/;
             if (pattName.test(fName.value)) {
                 iconOkfName.className = `material-icons text-success`;
                 iconOkfName.innerHTML = `done`;
@@ -137,7 +137,7 @@
         }
 
         function compareAge() {
-            pattAge = /^\d{2}$/g;
+            pattAge = /^\d{2}$/;
             if (pattAge.test(age.value)) {
                 iconOkage.className = `material-icons text-success`;
                 iconOkage.innerHTML = `done`;
