@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="myStyle.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Exercice 6</title>
+</head>
+
+<body>
+    <h1>Exercice 6</h1>
+    <p>Dans un formulaire, faire que les champs aient une bordure noire quand ils ont le focus. La supprimer quand ils perdent le focus.</p>
+    <form id="formProfil" class="p-2 max-W-320 m-auto" action="">
+        <fieldset class="bg-info">
+            <legend class="p-1 h4 text-white bg-info">Créez votre profil :</legend>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <label for="fName">Votre nom :</label>
+                    <div>
+                        <input type="text" id="fName" name="fName" class="border border-danger" placeholder="John"
+                            onKeyUp="compareName()">
+                        <span id="iconOkfName" class="material-icons text-danger">
+                            announcement
+                        </span>
+                        <p id="NameErr" class="text-muted font-italic"></p>
+                    </div>
+
+                </li>
+                <li class="list-group-item">
+                    <label for="mailAddress">Votre adresse mail :</label>
+                    <div>
+                        <input type="email" id="mailAddress" name="mailAddress" class="border border-danger"
+                            placeholder="youremail@address.com" onKeyUp="compareMail()">
+                        <span id="iconOkmailAddress" class="material-icons text-danger">
+                            announcement
+                        </span>
+                        <p id="MailErr" class="text-muted font-italic"></p>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <label for="age">Votre age :</label>
+                    <div>
+                        <input type="txt" id="age" name="age" class="border border-danger" placeholder="23"
+                            onKeyUp="compareAge()">
+                        <span id="iconOkage" class="material-icons text-danger">
+                            announcement
+                        </span>
+                        <p id="AgeErr" class="text-muted font-italic"></p>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <button id="validateForm" onclick="submitPwd()" disabled=true type="button">Valider</button>
+                </li>
+                <li class="list-group-item bg-info text-white font-italic">
+                    <p>*Tous les champs sont obligatoire</p>
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script>
+        let fName;
+        let mailAddress;
+        let age;
+        let iconOkfName;
+        let iconOkmailAddress;
+        let iconOkage
+        let pattName;
+        let pattMail;
+        let pattAge;
+        let nameOk = false;
+        let mailOk = false;
+        let ageOk = false;
+        let validateform = document.getElementById(`validateForm`);
+        fName = document.getElementById(`fName`);
+        mailAddress = document.getElementById(`mailAddress`);
+        age = document.getElementById(`age`);
+        iconOkfName = document.getElementById(`iconOkfName`);
+        iconOkmailAddress = document.getElementById(`iconOkmailAddress`);
+        iconOkage = document.getElementById(`iconOkage`);
+        let NameErr = document.getElementById(`NameErr`);
+        let MailErr = document.getElementById(`MailErr`);
+        let AgeErr = document.getElementById(`AgeErr`);
+        var formProfil = document.getElementById(`formProfil`);
+        var inputTxt = formProfil.getElementsByTagName(`input`);
+        formProfil.addEventListener(`keyup`, testForm);
+        console.log(formProfil);
+        
+        for (var i = 0; i < inputTxt.length; i++) { 
+            inputTxt[i].addEventListener(`focusin`, changeBorderFocus);
+            inputTxt[i].addEventListener(`focusout`, changeBorderFocus);
+        }
+
+        function changeBorderFocus() {
+            if (this.className === `border border-danger`) {
+                this.className = `border-1 border-dark`;
+            } else {
+                this.className = `border border-danger`;
+            }
+        }
+
+        function compareName() {
+
+            pattName = /([a-zA-Z][^\d]-*)\b/;
+            if (pattName.test(fName.value)) {
+                iconOkfName.className = `material-icons text-success`;
+                iconOkfName.innerHTML = `done`;
+                NameErr.innerHTML = ``;
+                nameOk = true;
+            } else {
+                iconOkfName.className = `material-icons text-danger`;
+                iconOkfName.innerHTML = `announcement`;
+                NameErr.innerHTML =
+                    `Votre nom doit comporter au moins 2 caractères, ne comporter que du texte et éventuellement un trait d'union (-)`;
+                nameOk = false;
+            }
+        }
+
+        function compareMail() {
+            pattMail =
+                /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/;
+
+            if (pattMail.test(mailAddress.value)) {
+                iconOkmailAddress.className = `material-icons text-success`;
+                iconOkmailAddress.innerHTML = `done`;
+                MailErr.innerHTML = ``;
+                mailOk = true;
+            } else {
+                iconOkmailAddress.className = `material-icons text-danger`;
+                iconOkmailAddress.innerHTML = `announcement`;
+                MailErr.innerHTML = `format d'email non valide`;
+                mailOk = false;
+            }
+        }
+
+        function compareAge() {
+            pattAge = /^\d{2}$/;
+            if (pattAge.test(age.value)) {
+                iconOkage.className = `material-icons text-success`;
+                iconOkage.innerHTML = `done`;
+                AgeErr.innerHTML = ``;
+                ageOk = true;
+            } else {
+                iconOkage.className = `material-icons text-danger`;
+                iconOkage.innerHTML = `announcement`;
+                AgeErr.innerHTML = `Votre age doit être compris entre 10 et 99 ans`;
+                ageOk = false;
+            }
+        }
+        
+        function testForm() {
+            if (nameOk && mailOk && ageOk) {
+                fName.className = `border border-success`;
+                mailAddress.className = `border border-success`;
+                age.className = `border border-success`;
+                validateform.disabled = false;
+            } else {
+                validateform.disabled = true;
+                fName.className = `border border-danger`;
+                mailAddress.className = `border border-danger`;
+                age.className = `border border-danger`;
+            }
+        }
+        function submitPwd() {
+            window.alert(`Merci`)
+        }
+    </script>
+</body>
+
+</html>
