@@ -22,8 +22,8 @@
                 <li class="list-group-item">
                     <label for="firstPwd">Votre mot de passe :</label>
                     <div>
-                        <input type="password" id="firstPwd" name="firstPwd" class="borderRed" onKeyUp="comparePwd()">
-                        <span id="iconOk1" class="material-icons textRed">
+                        <input type="password" id="firstPwd" name="firstPwd" class="border border-danger" onKeyUp="comparePwd()">
+                        <span id="iconOk1" class="material-icons text-danger">
                             announcement
                         </span>
                     </div>
@@ -32,15 +32,15 @@
                 <li class="list-group-item">
                     <label for="secondPwd">Confirmer votre mot de passe :</label>
                     <div></div>
-                    <input type="password" id="secondPwd" name="secondPwd" class="borderRed" onKeyUp="comparePwd()">
-                    <span id="iconOk2" class="material-icons textRed">
+                    <input type="password" id="secondPwd" name="secondPwd" class="border border-danger" onKeyUp="comparePwd()">
+                    <span id="iconOk2" class="material-icons text-danger">
                         announcement
                     </span>
                     </div>
                 </li>
                 <li class="list-group-item">
                     <input id="validateForm" onclick="submitPwd()" disabled=true type="button" value="Valider"></input>
-                    <p id="msgError" class="textRed"></p>
+                    <p id="msgError" class="text-danger"></p>
                 </li>
                 <li class="list-group-item bg-info text-white font-italic">
                     <p>*Votre mot de passe doit comporter :</p>
@@ -80,29 +80,25 @@
             secondPwd = document.getElementById(`secondPwd`);
             iconOk1 = document.getElementById(`iconOk1`);
             iconOk2 = document.getElementById(`iconOk2`);
-            console.log(firstPwd.value);
-            console.log(secondPwd.value);
             patt = /^(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\!\@\#\$\%\^\&\*\(\)\-\=\¡\£\_\+\`\~\.\,<\>\/\?\;\:\'\"\\\|\[\]\{\}]).{8,256}$/g;
             patt2 = /^(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\!\@\#\$\%\^\&\*\(\)\-\=\¡\£\_\+\`\~\.\,<\>\/\?\;\:\'\"\\\|\[\]\{\}]).{8,256}$/g;
             if (patt.test(firstPwd.value)) {
-                console.log(`test ok1`);
-                iconOk1.style.color = `green`;
+                iconOk1.className = `material-icons text-success`;
                 iconOk1.innerHTML = `done`;
                 Pwd1 = true;
             } else {
-                iconOk1.style.color = `red`;
+                iconOk1.className = `material-icons text-danger`;
                 iconOk1.innerHTML = `announcement`;
                 Pwd1 = false;
             }
 
             if (patt2.test(secondPwd.value)) {
-                console.log(`test ok2`);
-                iconOk2.style.color = `green`;
+                iconOk2.className = `material-icons text-success`;
                 iconOk2.innerHTML = `done`;
 
                 Pwd2 = true;
             } else {
-                iconOk2.style.color = `red`;
+                iconOk2.className = `material-icons text-danger`;
                 iconOk2.innerHTML = `announcement`;
                 Pwd2 = false;
             }
@@ -122,11 +118,11 @@
 
         function submitPwd() {
             if (firstPwd.value === secondPwd.value) {
-                firstPwd.style.border = `1px solid Green`;
-                secondPwd.style.border = `1px solid Green`;
+                firstPwd.className = `border border-success`;
+                secondPwd.className = `border border-success`;
             } else {
-                firstPwd.style.border = `1px solid Red`;
-                secondPwd.style.border = `1px solid Red`;
+                firstPwd.className = `border border-danger`;
+                secondPwd.className = `border border-danger`;
             }
         }
     </script>

@@ -1,0 +1,4 @@
+.max-W-320 {
+    min-width: min-content;
+    max-width: 320px;
+}
