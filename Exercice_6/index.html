@@ -94,10 +94,10 @@
         let NameErr = document.getElementById(`NameErr`);
         let MailErr = document.getElementById(`MailErr`);
         let AgeErr = document.getElementById(`AgeErr`);
-        var formProfil = document.getElementById(`formProfil`);
-        var inputTxt = formProfil.getElementsByTagName(`input`);
+        let formProfil = document.getElementById(`formProfil`);
+        let inputTxt = formProfil.getElementsByTagName(`input`);
         formProfil.addEventListener(`keyup`, testForm);
-        
+        // Exercice 6
         for (var i = 0; i < inputTxt.length; i++) { 
             inputTxt[i].addEventListener(`focus`, changeBorderFocus);
             inputTxt[i].addEventListener(`blur`, changeBorderFocus);
@@ -110,7 +110,7 @@
                 this.className = `border border-danger`;
             }
         }
-
+        // End Exercice 6
         function compareName() {
 
             pattName = /([a-zA-Z][^\d]-*)\b/;
