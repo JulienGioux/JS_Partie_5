@@ -68,6 +68,7 @@
   body.addEventListener(`wheel`, test, true);
   const ratioFontSize = 0.1;
   body.style.fontSize = `1rem`;
+
   function test(event){
     let y = event.deltaY;    
     let fSizeNum = Number(this.style.fontSize.replace(`rem`, ``));
@@ -78,7 +79,5 @@
     }
     this.style.fontSize = `${fSizeNum}rem`;
   }
-    
-  // console.log()
 </script>
 </html>
