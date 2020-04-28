@@ -1,0 +1,7 @@
+template.config.js
+.templates/.editorconfig
+.templates/index.html
+.templates/template-sample/index.js
+.templates/template-sample-react-component/index.jsx
+.templates/template-sample-react-component/index.scss
+.templates/.gitignore

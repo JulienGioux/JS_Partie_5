@@ -14,7 +14,8 @@
 <body>
     <h1>Exercice 1</h1>
     <p>Créer un formulaire demandant un mot de passe et une confirmation de mot de passe et comportant un bouton.
-        Au clic sur le bouton, si les deux champs sont identiques, les entourer de vert. Sinon les entourer en rouge.</p>
+        Au clic sur le bouton, si les deux champs sont identiques, les entourer de vert. Sinon les entourer en rouge.
+    </p>
     <form class="p-2 max-W-320 m-auto" action="">
         <fieldset class="bg-info">
             <legend class="p-1 h4 text-white bg-info">Créez votre mot de passe :</legend>
@@ -31,11 +32,11 @@
                 </li>
                 <li class="list-group-item">
                     <label for="secondPwd">Confirmer votre mot de passe :</label>
-                    <div></div>
-                    <input type="password" id="secondPwd" name="secondPwd" class="borderRed" onKeyUp="comparePwd()">
-                    <span id="iconOk2" class="material-icons textRed">
-                        announcement
-                    </span>
+                    <div>
+                        <input type="password" id="secondPwd" name="secondPwd" class="borderRed" onKeyUp="comparePwd()">
+                        <span id="iconOk2" class="material-icons textRed">
+                            announcement
+                        </span>
                     </div>
                 </li>
                 <li class="list-group-item">
@@ -65,23 +66,16 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
     <script>
-        let firstPwd;
-        let secondPwd;
-        let iconOk1;
-        let iconOk2;
-        let patt;
-        let patt2;
-        let Pwd1;
-        let Pwd2;
-        let validateform = document.getElementById(`validateForm`);
-
         function comparePwd() {
-            firstPwd = document.getElementById(`firstPwd`);
-            secondPwd = document.getElementById(`secondPwd`);
-            iconOk1 = document.getElementById(`iconOk1`);
-            iconOk2 = document.getElementById(`iconOk2`);
-            patt = /^(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\!\@\#\$\%\^\&\*\(\)\-\=\¡\£\_\+\`\~\.\,<\>\/\?\;\:\'\"\\\|\[\]\{\}]).{8,256}$/g;
-            patt2 = /^(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\!\@\#\$\%\^\&\*\(\)\-\=\¡\£\_\+\`\~\.\,<\>\/\?\;\:\'\"\\\|\[\]\{\}]).{8,256}$/g;
+            let firstPwd = document.getElementById(`firstPwd`);
+            let secondPwd = document.getElementById(`secondPwd`);
+            let iconOk1 = document.getElementById(`iconOk1`);
+            let iconOk2 = document.getElementById(`iconOk2`);
+            let validateform = document.getElementById(`validateForm`);
+            let Pwd1 = false;
+            let Pwd2 = false;
+            let patt =
+                /^(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\!\@\#\$\%\^\&\*\(\)\-\=\¡\£\_\+\`\~\.\,<\>\/\?\;\:\'\"\\\|\[\]\{\}]).{8,256}$/;
             if (patt.test(firstPwd.value)) {
                 iconOk1.style.color = `green`;
                 iconOk1.innerHTML = `done`;
@@ -92,7 +86,7 @@
                 Pwd1 = false;
             }
 
-            if (patt2.test(secondPwd.value)) {
+            if (patt.test(secondPwd.value)) {
                 iconOk2.style.color = `green`;
                 iconOk2.innerHTML = `done`;
 
