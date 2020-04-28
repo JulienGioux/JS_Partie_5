@@ -80,12 +80,9 @@
             secondPwd = document.getElementById(`secondPwd`);
             iconOk1 = document.getElementById(`iconOk1`);
             iconOk2 = document.getElementById(`iconOk2`);
-            console.log(firstPwd.value);
-            console.log(secondPwd.value);
             patt = /^(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\!\@\#\$\%\^\&\*\(\)\-\=\¡\£\_\+\`\~\.\,<\>\/\?\;\:\'\"\\\|\[\]\{\}]).{8,256}$/g;
             patt2 = /^(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\!\@\#\$\%\^\&\*\(\)\-\=\¡\£\_\+\`\~\.\,<\>\/\?\;\:\'\"\\\|\[\]\{\}]).{8,256}$/g;
             if (patt.test(firstPwd.value)) {
-                console.log(`test ok1`);
                 iconOk1.style.color = `green`;
                 iconOk1.innerHTML = `done`;
                 Pwd1 = true;
@@ -96,7 +93,6 @@
             }
 
             if (patt2.test(secondPwd.value)) {
-                console.log(`test ok2`);
                 iconOk2.style.color = `green`;
                 iconOk2.innerHTML = `done`;
 
