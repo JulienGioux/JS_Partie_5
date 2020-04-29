@@ -48,7 +48,7 @@
         function fc_addUsr() {
             i++;
             let cln = document.getElementById(`catUsr1`).cloneNode(true);
-            cln.setAttribute(`id`, `catUsr${i}`)
+            cln.id = `catUsr${i}`;
             cln.firstChild.nextSibling.innerText = `Utilisateur ${i} :`;
             document.getElementById(`listUsr`).appendChild(cln);
         }
