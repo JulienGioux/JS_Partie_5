@@ -64,10 +64,10 @@
   </p>
 </body>
 <script>
-  let body = document.getElementsByTagName(`body`)[0];
-  body.addEventListener(`wheel`, zoomTxt, true);
+  let TagBody = document.getElementsByTagName(`body`)[0];
+  TagBody.addEventListener(`wheel`, zoomTxt, true);
   const ratioFontSize = 0.1;
-  body.style.fontSize = `1rem`;
+  TagBody.style.fontSize = `1rem`;
 
   function zoomTxt(event){
     let y = event.deltaY;    
