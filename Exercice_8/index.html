@@ -44,14 +44,13 @@
     <script>
         let addUsr = document.getElementById(`addUsr`);
         addUsr.addEventListener(`click`, fc_addUsr);
-        var i = 1;
-
+        let i = 1;
         function fc_addUsr() {
             i++;
             let cln = document.getElementById(`catUsr1`).cloneNode(true);
             cln.setAttribute(`id`, `catUsr${i}`)
             cln.firstChild.nextSibling.innerText = `Utilisateur ${i} :`;
-            document.getElementById(`listUsr`).append(cln);
+            document.getElementById(`listUsr`).appendChild(cln);
         }
     </script>
 
